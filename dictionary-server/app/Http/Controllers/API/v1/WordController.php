@@ -120,7 +120,7 @@ class WordController extends Controller
      *         response=400,
      *         description="Lỗi trong quá trình xử lý request.",
      *         @OA\JsonContent(
-     *             @OA\Property(property="error", type="string", example="Không thành công!"),
+     *             @OA\Property(property="error", type="string", example="Đã có lỗi xảy ra!"),
      *         ),
      *     ),
      * )
@@ -132,9 +132,9 @@ class WordController extends Controller
         try {
             $data = $this->wordRepository->createWord($request->all());
             return $data ?
-                $this->responseSuccess($data, 'Thêm từ thành công!')
+                $this->responseSuccess($data, 'Thêm từ thành công.')
                 :
-                $this->responseError(null, 'Lỗi rồi!', Response::HTTP_NOT_FOUND);
+                $this->responseError(null, 'Đã có lỗi xảy ra!');
         } catch (\Exception $e) {
             return $this->responseError(null, $e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }

@@ -1391,6 +1391,132 @@
                 ]
             }
         },
+        "/api/v1/store-mean": {
+            "post": {
+                "tags": [
+                    "Means"
+                ],
+                "summary": "Thêm nghĩa mới",
+                "description": "Thêm một nghĩa mới dựa vào id từ.",
+                "operationId": "479b1a3b1fbf1bf56abbf28a12aec1c3",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "word_id",
+                                    "word_type_id",
+                                    "means"
+                                ],
+                                "properties": {
+                                    "word_id": {
+                                        "description": "Id từ",
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "word_type_id": {
+                                        "description": "Id từ loại",
+                                        "type": "integer",
+                                        "example": 2
+                                    },
+                                    "means": {
+                                        "description": "Nghĩa của từ.",
+                                        "type": "string",
+                                        "example": "Test nghĩa"
+                                    },
+                                    "description": {
+                                        "description": "Mô tả (có thể trống).",
+                                        "type": "string",
+                                        "example": "Test mô tả"
+                                    },
+                                    "example": {
+                                        "description": "Ví dụ (có thể trống).",
+                                        "type": "string",
+                                        "example": "Test ví dụ"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Thêm nghĩa thành công.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "required": [
+                                        "word_id",
+                                        "word_type_id",
+                                        "means"
+                                    ],
+                                    "properties": {
+                                        "word_id": {
+                                            "description": "Id từ",
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "word_type_id": {
+                                            "description": "Id từ loại",
+                                            "type": "integer",
+                                            "example": 2
+                                        },
+                                        "means": {
+                                            "description": "Nghĩa của từ.",
+                                            "type": "string",
+                                            "example": "Test nghĩa"
+                                        },
+                                        "description": {
+                                            "description": "Mô tả (có thể trống).",
+                                            "type": "string",
+                                            "example": "Test mô tả"
+                                        },
+                                        "example": {
+                                            "description": "Ví dụ (có thể trống).",
+                                            "type": "string",
+                                            "example": "Test ví dụ"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2023-10-27T04:58:55.000000Z"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2023-10-27T04:58:55.000000Z"
+                                        },
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Lỗi trong quá trình xử lý request.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Đã có lỗi xảy ra!"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/get-questions/{limit}/{user_id}": {
             "get": {
                 "tags": [
@@ -2085,7 +2211,7 @@
                 ],
                 "summary": "Get all specializations",
                 "description": "Retrieve a list of all specializations",
-                "operationId": "0af15fc5abb385a62032af0cb78ecb96",
+                "operationId": "589379887eed69f0a64bb5df9e08ea10",
                 "responses": {
                     "200": {
                         "description": "Successful operation",
@@ -2664,7 +2790,35 @@
                                     "properties": {
                                         "error": {
                                             "type": "string",
-                                            "example": "Không thành công!"
+                                            "example": "Đã có lỗi xảy ra!"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/get-all-word-type": {
+            "get": {
+                "tags": [
+                    "Word Type"
+                ],
+                "summary": "Get all Word Type",
+                "description": "Retrieve a list of all word type",
+                "operationId": "4785cb09635f48eecaa3c8920bdb520b",
+                "responses": {
+                    "200": {
+                        "description": "Lấy thành công tất cả từ loại.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": 200
                                         }
                                     },
                                     "type": "object"

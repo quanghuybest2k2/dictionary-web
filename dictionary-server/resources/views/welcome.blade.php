@@ -131,6 +131,33 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="card card-body m-2">
+                        <div class="row">
+                            <div class="col-5">
+                                <h4>Word Type Module</h4>
+                            </div>
+                            <div class="col-7">
+                                <ul class="feature-list">
+                                    <li>get-all-word-type</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card card-body m-2">
+                        <div class="row">
+                            <div class="col-5">
+                                <h4>Means Module</h4>
+                            </div>
+                            <div class="col-7">
+                                <ul class="feature-list">
+                                    <li>store mean</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="card card-body m-2">
                         <div class="row">
                             <div class="col-5">
