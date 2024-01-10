@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\API\v1;
 
-use App\Traits\ResponseTrait;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use App\Models\WordLookupHistory;
-use App\Http\Controllers\Controller;
 use App\Models\LoveText;
-use App\Models\TranslateHistory;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
+use App\Traits\ResponseTrait;
 use OpenApi\Annotations as OA;
+use App\Models\TranslateHistory;
+use App\Models\WordLookupHistory;
+use Illuminate\Http\JsonResponse;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
+use App\Http\Requests\HistoryRequest\storeTranslateRequest;
 use App\Repositories\HistoriesRepositoryService\IHistoriesRepository;
 
 class HistoryController extends Controller
@@ -411,51 +412,21 @@ class HistoryController extends Controller
         }
     }
 
-    public function storeTranslateHistory(Request $request)
+    public function storeTranslateHistory(storeTranslateRequest $request)
     {
-        $validator = Validator::make(
-            $request->all(),
-            [
-                'english' => 'required|max:400',
-                'vietnamese' => 'required|max:400',
-                'user_id' => 'required|integer|min:1',
-            ],
-            [
-                'required' => 'Vui lòng nhập :attribute.',
-                'max' => ':attribute không được vượt quá :max ký tự.',
-                'integer' => ':attribute phải là số nguyên.',
-                'min' => ':attribute phải lớn hơn hoặc bằng :min.',
-            ],
-            [
-                'english' => 'Tiếng anh',
-                'vietnamese' => 'Tiếng việt',
-                'user_id' => 'Id người dùng',
-            ]
-        );
-        if ($validator->fails()) {
-            return response()->json([
-                'validator_errors' => $validator->messages(),
-            ]);
-        } else {
-
+        try {
             $translateHistory = $this->historiesRepository->createTranslateHistory($request->all());
             // $existingRecord = TranslateHistory::where('english', $request->english)
             //     ->where('vietnamese', $request->vietnamese)
             //     ->where('user_id', $request->user_id)
             //     ->first();
-
-            if ($translateHistory) {
-                return response()->json([
-                    'status' => Response::HTTP_CREATED,
-                    'message' => 'Đã thêm bản dịch này vào lịch sử.',
-                    'wordLookup' => $translateHistory
-                ], Response::HTTP_CREATED);
-            } else {
-                return response()->json([
-                    'status' => Response::HTTP_BAD_REQUEST,
-                    'message' => 'Thêm thất bại!'
-                ], Response::HTTP_BAD_REQUEST);
-            }
+            return $translateHistory
+                ?
+                $this->responseSuccess($translateHistory, "Đã thêm bản dịch này vào lịch sử.", Response::HTTP_CREATED)
+                :
+                $this->responseError("Bad request", "Thêm thất bại!");
+        } catch (\Exception $e) {
+            return $this->responseError(null, $e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
