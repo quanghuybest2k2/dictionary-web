@@ -10,8 +10,10 @@ use App\Http\Controllers\API\v1\HistoryController;
 use App\Http\Controllers\API\v1\FrontEndController;
 use App\Http\Controllers\API\v1\DashboardController;
 use App\Http\Controllers\API\v1\HotVocabularyController;
+use App\Http\Controllers\API\v1\MeanController;
 use App\Http\Controllers\API\v1\MiniGameController;
 use App\Http\Controllers\API\v1\SpecializationController;
+use App\Http\Controllers\API\v1\WordTypeController;
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
@@ -43,6 +45,14 @@ Route::prefix('v1')->group(function () {
         Route::get('random-word', 'getRandomWord')->name('getRandomWord');
         Route::post('store-word', 'storeWord')->name('storeWord');
     });
+    // từ loại
+    Route::controller(WordTypeController::class)->group(function () {
+        Route::get('get-all-word-type', 'getAllWordType')->name('getAllWordType');
+    });
+    // nghĩa
+    Route::controller(MeanController::class)->group(function () {
+        Route::post('store-mean', 'storeMean')->name('storeMean');
+    });
     // tìm kiếm
     Route::controller(SearchController::class)->group(function () {
         Route::get('search-word', 'search')->name('searchWord');
@@ -61,7 +71,7 @@ Route::prefix('v1')->group(function () {
 
     // chuyên ngành
     Route::controller(SpecializationController::class)->group(function () {
-        Route::get('get-all-specialization', 'getAll')->name('getAllSpecialization');
+        Route::get('get-all-specialization', 'getAllSpecialization')->name('getAllSpecialization');
         Route::get('display-by-specialization', 'DisplayBySpecialization')->name('displayBySpecialization');
     });
 
@@ -160,4 +170,4 @@ Route::prefix('v1')->group(function () {
 
         Route::post('logout', [UserController::class, 'logout'])->name('logout');
     });
-})->middleware('cacheResponse:600');
+});
