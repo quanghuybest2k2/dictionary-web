@@ -46,7 +46,7 @@ Route::prefix('v1')->group(function () {
         // ====================================== For User ======================================
         // từ
         Route::controller(WordController::class)->group(function () {
-            Route::get('random-word', 'getRandomWord')->name('getRandomWord');
+            Route::get('random-word', 'getRandomWord')->name('getRandomWord')->withoutMiddleware('auth:sanctum');
             Route::post('store-word', 'storeWord')->name('storeWord');
         });
         // từ loại
