@@ -1,7 +1,8 @@
 import { get_api, post_api, delete_api } from "./Methods";
+import config from ".././config";
 
 export async function getSpecialize() {
-  return get_api(`url`);
+  return get_api(`${config.API_URL}/get-all-specialization`);
 }
 export async function getSpecializeById(id = 0) {
   if (id > 0) {
