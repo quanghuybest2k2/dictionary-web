@@ -136,77 +136,6 @@
                 }
             }
         },
-        "/api/v1/check-if-exist": {
-            "get": {
-                "tags": [
-                    "History"
-                ],
-                "summary": "Check if a word or love text exists in history",
-                "description": "Check if a word or love text exists in the user's history by English keyword and user ID",
-                "operationId": "9ab755f32174547070f22e6f2ba4bd94",
-                "parameters": [
-                    {
-                        "name": "english",
-                        "in": "query",
-                        "description": "English",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "user_id",
-                        "in": "query",
-                        "description": "User Id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful operation",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "status": {
-                                            "type": "integer",
-                                            "example": 200
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "422": {
-                        "description": "Validation error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "validator_errors": {
-                                            "type": "object",
-                                            "example": {
-                                                "english": [
-                                                    "Vui lòng nhập Từ khóa tiếng anh"
-                                                ],
-                                                "user_id": [
-                                                    "Id người dùng phải là số nguyên dương."
-                                                ]
-                                            }
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/api/v1/get-word-lookup-history/{user_id}": {
             "get": {
                 "tags": [
@@ -738,6 +667,77 @@
                                         "error": {
                                             "type": "string",
                                             "example": "Hiện tại chưa có từ vựng hot!"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/check-if-exist-by-type": {
+            "get": {
+                "tags": [
+                    "Favorite"
+                ],
+                "summary": "Check if a word or love text exists in favorite",
+                "description": "Check if a word or love text exists in the user's favorite by English keyword and user ID",
+                "operationId": "b804afea1d3d28d4be128092fe3e5247",
+                "parameters": [
+                    {
+                        "name": "english",
+                        "in": "query",
+                        "description": "English",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "User Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": 200
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "validator_errors": {
+                                            "type": "object",
+                                            "example": {
+                                                "english": [
+                                                    "Vui lòng nhập Từ khóa tiếng anh"
+                                                ],
+                                                "user_id": [
+                                                    "Id người dùng phải là số nguyên dương."
+                                                ]
+                                            }
                                         }
                                     },
                                     "type": "object"

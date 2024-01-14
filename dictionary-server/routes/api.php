@@ -79,7 +79,6 @@ Route::prefix('v1')->group(function () {
         });
         // lịch sử
         Route::controller(HistoryController::class)->group(function () {
-            Route::get('check-if-exist', 'checkIfExist')->name('checkIfExist');
             //  ------------------ từ ------------------------------------
             // lấy lịch sử tra từ của user cụ thể
             Route::get('get-word-lookup-history/{user_id}', 'getWordLookupHistory')->name('getWordLookupHistory');
@@ -107,6 +106,8 @@ Route::prefix('v1')->group(function () {
         });
         // yêu thích
         Route::controller(LoveController::class)->group(function () {
+            Route::get('check-if-exist-by-type', 'checkIfExistByType')->name('checkIfExistByType');
+            //==========================================================
             // lấy tổng mục yêu thích của user
             Route::get('total-love-item/{user_id}', 'TotalLoveItemOfUser')->name('totalLoveItem');
             // Xóa hết record trong 2 bảng
