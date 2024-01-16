@@ -159,8 +159,7 @@ Route::prefix('v1')->group(function () {
                 'message' => 'Bạn đã đăng nhập',
                 'errors' => null,
                 'data' => null,
-
-            ], 200)->name('checkAuthenticated');
+            ], 200);
         });
 
         // Dashboard
