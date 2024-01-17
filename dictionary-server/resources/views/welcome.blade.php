@@ -126,6 +126,8 @@
                             <div class="col-7">
                                 <ul class="feature-list">
                                     <li>random word</li>
+                                    <li>get-all-word</li>
+                                    <li>get-unapproved</li>
                                     <li>store word</li>
                                 </ul>
                             </div>

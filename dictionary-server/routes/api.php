@@ -47,6 +47,8 @@ Route::prefix('v1')->group(function () {
         // từ
         Route::controller(WordController::class)->group(function () {
             Route::get('random-word', 'getRandomWord')->name('getRandomWord')->withoutMiddleware('auth:sanctum');
+            Route::get('get-all-word', 'getAllWord')->name('getAllWord')->withoutMiddleware('auth:sanctum');
+            Route::get('get-unapproved', 'getUnApproved')->name('getUnApproved')->withoutMiddleware('auth:sanctum');
             Route::post('store-word', 'storeWord')->name('storeWord');
         });
         // từ loại

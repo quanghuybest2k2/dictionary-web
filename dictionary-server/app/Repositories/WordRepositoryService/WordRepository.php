@@ -20,6 +20,10 @@ class WordRepository implements IWordRepository
     {
         return Word::where('status', 1)->get();
     }
+    public function getUnApproved()
+    {
+        return Word::where('status', 0)->get();
+    }
     public function getSuggest($specializationId)
     {
         return Word::where('specialization_id', $specializationId)->where('status', 1)->get(); //->pluck('word_name')
