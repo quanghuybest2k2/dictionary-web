@@ -10,6 +10,7 @@ import * as AdminIndex from "./Pages/Admin/Index";
 import NotFound from "./Pages/NotFound";
 import BadRequest from "./Pages/BadRequest";
 import Specialize from "./Pages/Admin/specialize/Specialize";
+import WordUnApproved from "./Pages/Admin/word/WordUnApproved";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/admin" element={<AdminLayout />}>
           <Route path="/admin" element={<AdminIndex.default />} />
           <Route path="/admin/specialize" element={<Specialize />} />
+          <Route path="/admin/word-unapproved" element={<WordUnApproved />} />
         </Route>
         <Route path="/400" element={<BadRequest />} />
         <Route path="*" element={<NotFound />} />

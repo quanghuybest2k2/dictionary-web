@@ -1,13 +1,10 @@
 import { get_api, post_api, delete_api } from "./Methods";
-import config from ".././config";
+import config from "../config";
 
-export async function getSpecialize() {
-  return get_api(`${config.API_URL}/get-all-specialization`);
-}
-export async function getSpecializeUnApproved() {
+export async function getWordUnApproved() {
   return get_api(`${config.API_URL}/get-unapproved`);
 }
-export async function getSpecializeById(id = 0) {
+export async function getWordById(id = 0) {
   if (id > 0) {
     return get_api(`url/${id}`);
   } else {

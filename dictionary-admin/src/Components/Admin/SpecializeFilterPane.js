@@ -14,14 +14,6 @@ const SpecializeFilterPane = () => {
         />
       </Form.Group>
       <Form.Group className="col-auto">
-        <Form.Label className="form-check-label">Hiển thị trên Menu</Form.Label>
-        <Form.Control
-          className="form-check-input"
-          type="checkbox"
-          name="showOnMenu"
-        />
-      </Form.Group>
-      <Form.Group className="col-auto">
         <Button variant="danger" type="reset">
           Xóa lọc
         </Button>

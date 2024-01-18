@@ -3,32 +3,30 @@ import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 import { Link } from "react-router-dom";
 import Loading from "../../../Components/Loading";
-import { getSpecialize } from "../../../Services/specializeRepository";
-import SpecializeFilterPane from "../../../Components/Admin/SpecializeFilterPane";
+import { getWordUnApproved } from "../../../Services/wordRepository";
 
-const Specialize = () => {
-  const [specializeList, setSpecializeList] = useState([]);
-  const [specializeQuery, setSpecializeQuery] = useState({});
+const WordUnApproved = () => {
+  const [wordUnApprovedList, setWordUnApprovedList] = useState([]);
+  const [wordUnApprovedQuery, setWordUnApprovedQuery] = useState({});
   const [isVisibleLoading, setIsVisibleLoading] = useState(true);
   let stt = 1;
 
   useEffect(() => {
-    document.title = "Danh sách chuyên ngành";
-    getSpecialize().then((data) => {
+    document.title = "Danh sách từ chưa duyệt";
+    getWordUnApproved().then((data) => {
       if (data) {
-        setSpecializeQuery((pre) => {
-          return { ...pre, to: "/admin/specialize" };
+        setWordUnApprovedQuery((pre) => {
+          return { ...pre, to: "/admin/word-unapproved" };
         });
-        setSpecializeList(data);
-      } else setSpecializeList([]);
+        setWordUnApprovedList(data);
+      } else setWordUnApprovedList([]);
       setIsVisibleLoading(false);
     });
   }, []);
 
   return (
     <>
-      <h1>Danh sách chuyên ngành</h1>
-      <SpecializeFilterPane />
+      <h1>Danh sách từ chưa duyệt</h1>
       {isVisibleLoading ? (
         <Loading />
       ) : (
@@ -36,20 +34,27 @@ const Specialize = () => {
           <thead>
             <tr>
               <th>STT</th>
-              <th>Tên chuyên ngành</th>
-              <th></th>
+              <th>Tên từ</th>
+              <th>Phiên âm</th>
+              <th>Đồng nghĩa</th>
+              <th>Trái nghĩa</th>
+              <th>Trạng thái</th>
             </tr>
           </thead>
           <tbody>
-            {specializeList && specializeList.length > 0 ? (
-              specializeList.map((item, index) => (
+            {wordUnApprovedList && wordUnApprovedList.length > 0 ? (
+              wordUnApprovedList.map((item, index) => (
                 <tr key={index}>
                   <td>{stt++}</td>
-                  <td>{item.specialization_name}</td>
+                  <td>{item.word_name}</td>
+                  <td>{item.pronunciations}</td>
+                  <td>{item.synonymous}</td>
+                  <td>{item.antonyms}</td>
+                  <td>{item.status === 0 ? "Chưa duyệt" : "Đã duyệt"}</td>
                   <td>
                     <div className="d-flex align-items-center justify-content-between">
                       <Link
-                        to={`/admin/specialize/edit/${item.id}`}
+                        to={`/admin/specialize-unapproved/edit/${item.id}`}
                         className="text-bold px-2"
                       >
                         Sửa
@@ -64,7 +69,7 @@ const Specialize = () => {
               <tr>
                 <td colSpan={4}>
                   <h4 className="text-danger text-center">
-                    Không tìm thấy chuyên ngành
+                    Không tìm thấy từ vựng
                   </h4>
                 </td>
               </tr>
@@ -75,4 +80,4 @@ const Specialize = () => {
     </>
   );
 };
-export default Specialize;
+export default WordUnApproved;

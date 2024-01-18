@@ -24,6 +24,11 @@ const Navbar = () => {
                 Chuyên ngành
               </Link>
             </Nav.Item>
+            <Nav.Item>
+              <Link to="/admin/word-unapproved" className="nav-link text-dark">
+                Từ chưa duyệt
+              </Link>
+            </Nav.Item>
             {/* // */}
           </Nav>
         </Nb.Collapse>
