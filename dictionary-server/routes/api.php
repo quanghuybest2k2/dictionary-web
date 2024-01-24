@@ -3,17 +3,18 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\v1\LoveController;
+use App\Http\Controllers\API\v1\MeanController;
 use App\Http\Controllers\API\v1\UserController;
 use App\Http\Controllers\API\v1\WordController;
+use App\Http\Controllers\API\v1\ReviewController;
 use App\Http\Controllers\API\v1\SearchController;
 use App\Http\Controllers\API\v1\HistoryController;
 use App\Http\Controllers\API\v1\FrontEndController;
+use App\Http\Controllers\API\v1\MiniGameController;
+use App\Http\Controllers\API\v1\WordTypeController;
 use App\Http\Controllers\API\v1\DashboardController;
 use App\Http\Controllers\API\v1\HotVocabularyController;
-use App\Http\Controllers\API\v1\MeanController;
-use App\Http\Controllers\API\v1\MiniGameController;
 use App\Http\Controllers\API\v1\SpecializationController;
-use App\Http\Controllers\API\v1\WordTypeController;
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
@@ -141,6 +142,11 @@ Route::prefix('v1')->group(function () {
         Route::controller(HotVocabularyController::class)->withoutMiddleware('auth:sanctum')->group(function () {
             // lưu từ vựng yêu thích
             Route::get('get-hot-vocabulary', 'getHotVocabulary')->name('getHotVocabulary');
+        });
+        // phản hồi
+        Route::controller(ReviewController::class)->group(function () {
+            // lưu phản hồi
+            Route::post('reviews', 'reviews')->name('reviews');
         });
         // mini game
         Route::controller(MiniGameController::class)->group(function () {

@@ -1709,6 +1709,110 @@
                 }
             }
         },
+        "/api/v1/reviews": {
+            "post": {
+                "tags": [
+                    "Reviews"
+                ],
+                "summary": "Tạo phản hồi",
+                "description": "Tạo phản hồi từ người dùng",
+                "operationId": "001ea51290c7797b57d13a750cc704b9",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "user_id",
+                                    "rating"
+                                ],
+                                "properties": {
+                                    "user_id": {
+                                        "description": "Id người dùng",
+                                        "type": "integer",
+                                        "example": 2
+                                    },
+                                    "rating": {
+                                        "description": "1 -> 5 sao",
+                                        "type": "integer",
+                                        "example": 5
+                                    },
+                                    "comment": {
+                                        "description": "Phản hồi (có thể trống).",
+                                        "type": "string",
+                                        "example": "Ứng dụng tốt quá! rất ứng ý."
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Phản hồi thành công.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "required": [
+                                        "user_id",
+                                        "rating"
+                                    ],
+                                    "properties": {
+                                        "user_id": {
+                                            "description": "Id người dùng",
+                                            "type": "integer",
+                                            "example": 2
+                                        },
+                                        "rating": {
+                                            "description": "1 -> 5 sao",
+                                            "type": "integer",
+                                            "example": 5
+                                        },
+                                        "comment": {
+                                            "description": "Phản hồi (có thể trống).",
+                                            "type": "string",
+                                            "example": "Ứng dụng tốt quá! rất ứng ý."
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2023-10-27T04:58:55.000000Z"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2023-10-27T04:58:55.000000Z"
+                                        },
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Lỗi trong quá trình xử lý request.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Đã có lỗi xảy ra!"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/search-word": {
             "get": {
                 "tags": [
