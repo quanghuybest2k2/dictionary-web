@@ -35,15 +35,7 @@ class UserRepository implements IUserRepository
             $role = '';
             $token = $user->createToken($user->email . '_Token', [''])->plainTextToken;
         }
-
-        $data = [
-            'user_id' => $user->id,
-            'username' => $user->name,
-            'token' => $token,
-            'role' => $role,
-            'created_at' => $user->created_at,
-        ];
-        return $data;
+        return array_merge($user->toArray(), ['token' => $token, 'role' => $role]);
     }
     public function getUserById(string $id): User|null
     {

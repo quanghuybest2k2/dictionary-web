@@ -1750,7 +1750,7 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Phản hồi thành công.",
+                        "description": "Cảm ơn bạn đã đánh giá ứng dụng.",
                         "content": {
                             "application/json": {
                                 "schema": {

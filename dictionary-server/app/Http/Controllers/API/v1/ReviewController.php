@@ -37,7 +37,7 @@ class ReviewController extends Controller
      *     ),
      *      @OA\Response(
      *           response=200,
-     *           description="Phản hồi thành công.",
+     *           description="Cảm ơn bạn đã đánh giá ứng dụng.",
      *           @OA\JsonContent(
      *             required={"user_id", "rating"},
      *             @OA\Property(property="user_id", type="integer", example=2, description="Id người dùng"),
@@ -64,7 +64,7 @@ class ReviewController extends Controller
         try {
             $data = $this->IReviewsRepository->create($request->all());
             return $data ?
-                $this->responseSuccess($data, 'Phản hồi thành công.', Response::HTTP_CREATED)
+                $this->responseSuccess($data, 'Cảm ơn bạn đã đánh giá ứng dụng.', Response::HTTP_CREATED)
                 :
                 $this->responseError('Bad request', 'Đã có lỗi xảy ra!');
         } catch (\Exception $e) {
